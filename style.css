@@ -1,0 +1,31 @@
+html { 
+    box-sizing: border-box;
+}
+
+*, *::before,  *::after {
+    box-sizing: inherit;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* Header */
+header {
+    padding: 100px;
+}
+/* Grid */
+
+.grid-container {
+    display: inline-grid;
+    background-color: rgb(193, 193, 179);
+    height: 800px;
+    width: 800px;
+}

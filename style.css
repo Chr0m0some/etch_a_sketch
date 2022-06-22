@@ -99,6 +99,10 @@ header {
     background-color:#f3d37d;
 }
 
+.activated {
+    background-color: #f3d37d;
+}
+
 .erase {
     transition: all 0.3s ease-in-out;
     font-size: medium;

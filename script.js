@@ -6,10 +6,12 @@ const RAINBOW = document.querySelector('.rainbow.choice');
 const ERASE = document.querySelector('.erase');
 
 const REGULAR_GRID_SIZE = 16;
-const MEDIUM_GRID_SIZE = 64;
-const LARGE_GRID_SIZE = 100;
+const MEDIUM_GRID_SIZE = 32;
+const LARGE_GRID_SIZE = 64;
 
 let default_ink = '#707070';
+let current_size_mode = REGULAR;
+let blotted_squares;
 
 /* 
 
@@ -35,10 +37,12 @@ function buildGrid(size){
 
 function changeColor:
     Sets the square that just got touched by a mouse to the hex color code that's set as the default ink
+    Adds a marker to the event target to indicate that the target is colored
 
 */
 function changeColor(e){
     e.target.style.backgroundColor = default_ink;
+    e.target.classList.add('blotted');
 }
 
 /* 
@@ -57,35 +61,58 @@ function clearGrid(squares){
 /* 
 
 function erase:
-    Create a variable that gets all the grid square elements because they'll change based on what size mode the player is on
-    Clear the grid of those grid square elements
+    Create a variable that gets all the blotted grid square elements because they'll change based on what size mode the player is on
+    Clear the grid of those colored grid square elements
 
 */
 function erase(){
-    let grid_squares = document.querySelectorAll('.grid-square');
-    clearGrid(grid_squares);
+    blotted_squares = document.querySelectorAll('.blotted');
+    clearGrid(blotted_squares);
 }
 
 buildGrid(REGULAR_GRID_SIZE);
 ERASE.addEventListener('click', erase);
 
 /* Size Buttons */
+/* 
+    When the button is clicked:
+        Clear the grid 
+        Build a new grid of the button's corresponding size 
+    IF the current size of the grid is the same size as the button says:
+        Don't do anything
+    ELSE:
+        Change the grid 
+        Take away the current mode's button background
+        Give the new mode's button a highlighted background
 
+*/
 REGULAR.addEventListener('click', size => {
+    if (current_size_mode == size.target) return;
     erase();
     buildGrid(REGULAR_GRID_SIZE);
-    console.log('small');
+    current_size_mode.classList.remove('activated');
+    current_size_mode = REGULAR;
+    current_size_mode.classList.add('activated');
+    console.log('regular');
 });
 
 MEDIUM.addEventListener('click', size => {
+    if (current_size_mode == size.target) return;
     erase();
     buildGrid(MEDIUM_GRID_SIZE);
+    current_size_mode.classList.remove('activated');
+    current_size_mode = MEDIUM;
+    current_size_mode.classList.add('activated');
     console.log('medium');
 });
 
 LARGE.addEventListener('click', size => {
+    if (current_size_mode == size.target) return;
     erase();
     buildGrid(LARGE_GRID_SIZE);
+    current_size_mode.classList.remove('activated');
+    current_size_mode = LARGE;
+    current_size_mode.classList.add('activated');
     console.log('large');
 });
 

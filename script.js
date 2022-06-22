@@ -1,12 +1,15 @@
-let grid_size = 16
-let default_ink = '#707070';
-
 const GRID_CONTAINER = document.querySelector('.grid-container');
 const REGULAR = document.querySelector('.regular.choice');
 const MEDIUM = document.querySelector('.medium.choice');
 const LARGE = document.querySelector('.large.choice');
 const RAINBOW = document.querySelector('.rainbow.choice');
 const ERASE = document.querySelector('.erase');
+
+const REGULAR_GRID_SIZE = 16;
+const MEDIUM_GRID_SIZE = 64;
+const LARGE_GRID_SIZE = 100;
+
+let default_ink = '#707070';
 
 /* 
 
@@ -45,14 +48,26 @@ function clearGrid:
         Turn it back to the default color
 
 */
-function clearGrid(){
-    grid_squares.forEach(square => {
+function clearGrid(squares){
+    squares.forEach(square => {
         square.style.backgroundColor = '#c1c1b3';
     });
-    console.log('erase');
+    console.log('cleared');
 }
  
-buildGrid(grid_size);
+function erase(){
+    let grid_squares = document.querySelectorAll('.grid-square');
+    clearGrid(grid_squares);
+}
 
-let grid_squares = document.querySelectorAll('.grid-square');
-ERASE.addEventListener('click', clearGrid);
+buildGrid(REGULAR_GRID_SIZE);
+ERASE.addEventListener('click', erase);
+
+/* Size Buttons */
+
+MEDIUM.addEventListener('click', size => {
+    erase();
+    buildGrid(MEDIUM_GRID_SIZE);
+    console.log('medium');
+});
+

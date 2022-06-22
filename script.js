@@ -10,10 +10,12 @@ const MEDIUM_GRID_SIZE = 32;
 const LARGE_GRID_SIZE = 64;
 
 let default_ink = '#707070';
+let rainbow_ink = () => '#' + Math.floor(Math.random()*16777215).toString(16);
+let ink_mode = default_ink;
 let current_size_mode = REGULAR;
 let blotted_squares;
-
 let mouseDown = false
+
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
@@ -47,7 +49,12 @@ function changeColor:
 */
 function changeColor(e){
     if (!mouseDown) return
-    e.target.style.backgroundColor = default_ink;
+    if(ink_mode === default_ink) {
+        e.target.style.backgroundColor = ink_mode;
+    }
+    else {
+        e.target.style.backgroundColor = rainbow_ink();
+    }
     e.target.classList.add('blotted');
 }
 
@@ -130,4 +137,15 @@ LARGE.addEventListener('click', size => {
     The rainbow button background is shifting between different random colors
 
 */
-RAINBOW.addEventListener('click');
+RAINBOW.addEventListener('click', trance => {
+    if (ink_mode === default_ink) {
+        ink_mode = rainbow_ink;
+        console.log(ink_mode);
+        trance.target.classList.add('rainbow');
+    }
+    else {
+        ink_mode = default_ink;
+        console.log(ink_mode);
+        trance.target.classList.remove('rainbow');
+    }
+});

@@ -16,7 +16,7 @@ let current_size_mode = REGULAR;
 let blotted_squares;
 let mouseDown = false
 
-document.body.onmousedown = () => (mouseDown = true)
+document.body.onmousedown = () => (mouseDown = true) //Any click on the viewport of the document will show that the mouse is being pressed
 document.body.onmouseup = () => (mouseDown = false)
 
 /* 
@@ -43,12 +43,12 @@ function buildGrid(size){
 /* 
 
 function changeColor:
-    Sets the square that just got touched by a mouse to the hex color code that's set as the default ink
+    Sets the square that just got touched by a mouse to the hex color code that's set as the current ink mode
     Adds a marker to the event target to indicate that the target is colored
 
 */
 function changeColor(e){
-    if (!mouseDown) return
+    if (!mouseDown) return //This function is called when the mouse is over a grid square. This check is the extra check for mouse down. 
     if(ink_mode === default_ink) {
         e.target.style.backgroundColor = ink_mode;
     }
@@ -137,15 +137,19 @@ LARGE.addEventListener('click', size => {
     The rainbow button background is shifting between different random colors
 
 */
+let changing_background_interval;
 RAINBOW.addEventListener('click', trance => {
     if (ink_mode === default_ink) {
-        ink_mode = rainbow_ink;
+        ink_mode = rainbow_ink; //If the ink_mode is set to rainbow, then the check in the colorChange function will start calling the rainbow_ink function, creating a new color with every call of colorChange when a square is touched
         console.log(ink_mode);
-        trance.target.classList.add('rainbow');
+        changing_background_interval = setInterval(() => {trance.target.style.backgroundColor = rainbow_ink()}, 900);
+        console.log(changing_background_interval);
     }
     else {
         ink_mode = default_ink;
         console.log(ink_mode);
-        trance.target.classList.remove('rainbow');
+        console.log(changing_background_interval);
+        clearInterval(changing_background_interval);
+        trance.target.style.backgroundColor = '#FEFFFD';
     }
 });

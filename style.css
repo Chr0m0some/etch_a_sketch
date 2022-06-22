@@ -54,8 +54,8 @@ button {
     justify-content: space-between;
     align-items: center;
     border-radius: 16px;
-    width: 800px;
-    height: 800px;
+    width: 700px;
+    height: 700px;
     margin: 40px 0;
 }
 
@@ -74,8 +74,8 @@ header {
 .grid-container {
     display: inline-grid;
     background-color: #c1c1b3;
-    height: 600px;
-    width: 600px;
+    height: 500px;
+    width: 500px;
 }
 
 /* Buttons */
@@ -101,10 +101,6 @@ header {
 
 .activated {
     background-color: #f3d37d;
-}
-
-.rainbow {
-    
 }
 
 .erase {

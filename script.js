@@ -9,6 +9,7 @@ const REGULAR_GRID_SIZE = 16;
 const MEDIUM_GRID_SIZE = 32;
 const LARGE_GRID_SIZE = 64;
 
+let changing_background_interval;
 let default_ink = '#707070';
 let rainbow_ink = () => '#' + Math.floor(Math.random()*16777215).toString(16);
 let ink_mode = default_ink;
@@ -134,22 +135,24 @@ LARGE.addEventListener('click', size => {
 
     When the trance button is clicked:
         When the player draws in the grid the ink is now a randomized color (every square will be drawn with a randomized color)
-    The rainbow button background is shifting between different random colors
+        The rainbow button background is shifting between different random colors
+    When the trance button is clicked again:
+        The player goes back to using the default ink
+        The rainbow button background goes back to the default button background
 
 */
-let changing_background_interval;
 RAINBOW.addEventListener('click', trance => {
     if (ink_mode === default_ink) {
         ink_mode = rainbow_ink; //If the ink_mode is set to rainbow, then the check in the colorChange function will start calling the rainbow_ink function, creating a new color with every call of colorChange when a square is touched
         console.log(ink_mode);
-        changing_background_interval = setInterval(() => {trance.target.style.backgroundColor = rainbow_ink()}, 900);
+        changing_background_interval = setInterval(() => {trance.target.style.backgroundColor = rainbow_ink()}, 900); //rainbow_ink function returns a random color that gets assigned to the background color of the rainbow button. The second parameter of setInterval specifies how many milliseconds go by before successive function calls. The setInterval function returns an ID that is saved into changing_background_interval to be referenced later.
         console.log(changing_background_interval);
     }
     else {
         ink_mode = default_ink;
         console.log(ink_mode);
         console.log(changing_background_interval);
-        clearInterval(changing_background_interval);
+        clearInterval(changing_background_interval); //stops interval function from setting new background colors
         trance.target.style.backgroundColor = '#FEFFFD';
     }
 });

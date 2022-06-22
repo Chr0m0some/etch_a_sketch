@@ -41,6 +41,7 @@ function buildGrid(size){
         GRID_CONTAINER.appendChild(grid_square);
     }
 }
+
 /* 
 
 function changeColor:
@@ -72,6 +73,7 @@ function clearGrid(squares){
     });
     console.log('cleared');
 }
+
 /* 
 
 function erase:
@@ -84,6 +86,7 @@ function erase(){
     clearGrid(blotted_squares);
 }
 
+/* Starting App */
 buildGrid(REGULAR_GRID_SIZE);
 ERASE.addEventListener('click', erase);
 

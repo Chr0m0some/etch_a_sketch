@@ -8,6 +8,15 @@ const LARGE = document.querySelector('.large.choice');
 const RAINBOW = document.querySelector('.rainbow.choice');
 const ERASE = document.querySelector('.erase');
 
+/* 
+
+function buildGrid: Builds a grid of squares of a desired size and gives each square a relevant event type
+    Create a square grid of size by size columns/rows 
+    LOOP through each grid square and add them to the grid-square container:
+        Give them a new div with their own shared class
+        Give them event listeners so that they can detect when a mouse goes over to change color
+
+*/
 function buildGrid(size){
     GRID_CONTAINER.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     GRID_CONTAINER.style.gridTemplateRows = `repeat(${size}, 1fr)`;
@@ -19,15 +28,26 @@ function buildGrid(size){
         GRID_CONTAINER.appendChild(grid_square);
     }
 }
+/* 
 
+function changeColor:
+    Sets the square that just got touched by a mouse to the hex color code that's set as the default ink
+
+*/
 function changeColor(e){
     e.target.style.backgroundColor = default_ink;
 }
 
+/* 
+
+function clearGrid:
+    LOOP through each grid square:
+        Turn it back to the default color
+
+*/
 function clearGrid(){
     grid_squares.forEach(square => {
         square.style.backgroundColor = '#c1c1b3';
-        console.log(square);
     });
     console.log('erase');
 }

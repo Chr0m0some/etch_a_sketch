@@ -1,10 +1,12 @@
 /* 
 
 Color Palette:
-    Baby Pink: #F27999
+    Baby Pink: #E4ADC4
     Etch-a-Sketch Red: #BF0A2B
     Canvas Grey: #D9D0D3
     Knobs White: #FEFFFD
+    Font Yellow: #f3d37d
+
 */
 html { 
     box-sizing: border-box;
@@ -19,7 +21,7 @@ html, body {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Fascinate', sans-serif;
     background-color: #E4ADC4;
     margin: 0;
     display: flex;
@@ -37,6 +39,10 @@ h1 {
 button {
     background-color: #FEFFFD;
     border: none;
+    font-family: 'Montserrat', sans-serif;
+    width: 70px;
+    height: 35px;
+    border-radius: 4px;
 }
 
 /* Main Container */
@@ -56,7 +62,7 @@ button {
 /* Header */
 
 header {
-    font-family: 'Fascinate', sans-serif;
+    font-family: inherit;
     color: #f3d37d;
     height: 100px;
     display: flex;
@@ -67,7 +73,7 @@ header {
 
 .grid-container {
     display: inline-grid;
-    background-color: rgb(193, 193, 179);
+    background-color: #c1c1b3;
     height: 600px;
     width: 600px;
 }
@@ -81,6 +87,28 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+}
+
+.choice {
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+}
+
+.choice:hover {
+    cursor: pointer;
+    background-color:#f3d37d;
+}
+
+.erase {
+    transition: all 0.3s ease-in-out;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.erase:hover {
+    cursor: pointer;
+    background-color:#f3d37d;
+    font-size: large;
 }
 
 .github,

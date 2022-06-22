@@ -13,6 +13,10 @@ let default_ink = '#707070';
 let current_size_mode = REGULAR;
 let blotted_squares;
 
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
 /* 
 
 function buildGrid: Builds a grid of squares of a desired size and gives each square a relevant event type
@@ -29,6 +33,7 @@ function buildGrid(size){
     for (let i = 0; i < size * size; i++){
         const grid_square = document.createElement('div');
         grid_square.classList.add('grid-square');
+        // grid_square.addEventListener('mousedown', changeColor);
         grid_square.addEventListener('mouseover', changeColor);
         GRID_CONTAINER.appendChild(grid_square);
     }
@@ -41,6 +46,7 @@ function changeColor:
 
 */
 function changeColor(e){
+    if (!mouseDown) return
     e.target.style.backgroundColor = default_ink;
     e.target.classList.add('blotted');
 }
@@ -116,3 +122,12 @@ LARGE.addEventListener('click', size => {
     console.log('large');
 });
 
+/* Trance */
+/* 
+
+    When the trance button is clicked:
+        When the player draws in the grid the ink is now a randomized color (every square will be drawn with a randomized color)
+    The rainbow button background is shifting between different random colors
+
+*/
+RAINBOW.addEventListener('click');

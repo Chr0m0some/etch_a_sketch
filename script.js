@@ -54,7 +54,13 @@ function clearGrid(squares){
     });
     console.log('cleared');
 }
- 
+/* 
+
+function erase:
+    Create a variable that gets all the grid square elements because they'll change based on what size mode the player is on
+    Clear the grid of those grid square elements
+
+*/
 function erase(){
     let grid_squares = document.querySelectorAll('.grid-square');
     clearGrid(grid_squares);
@@ -65,9 +71,21 @@ ERASE.addEventListener('click', erase);
 
 /* Size Buttons */
 
+REGULAR.addEventListener('click', size => {
+    erase();
+    buildGrid(REGULAR_GRID_SIZE);
+    console.log('small');
+});
+
 MEDIUM.addEventListener('click', size => {
     erase();
     buildGrid(MEDIUM_GRID_SIZE);
     console.log('medium');
+});
+
+LARGE.addEventListener('click', size => {
+    erase();
+    buildGrid(LARGE_GRID_SIZE);
+    console.log('large');
 });
 
